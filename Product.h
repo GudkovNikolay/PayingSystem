@@ -1,12 +1,13 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include <sstream>
 
 class ProductInfo{
 public:
-    explicit ProductInfo(std::string info)noexcept : m_info(std::move(info)){};
-    std::string get_info() const noexcept {return m_info;}
+    explicit ProductInfo(const std::string& info)noexcept : m_info(std::move(info)){};
+    const std::string& get_info() const noexcept {return m_info;}
 private:
     std::string m_info;
 };
@@ -25,7 +26,7 @@ public:
     WeightProduct(const WeightProduct& obj):Product(obj.m_product_info), m_cost_per_kg(obj.get_cost()){
 
     }
-    WeightProduct(ProductInfo product_info, double cost) noexcept
+    WeightProduct(const ProductInfo& product_info, double cost) noexcept
             :m_cost_per_kg(cost), Product(product_info){};
     double get_cost() const noexcept override {return m_cost_per_kg;};
     std::string get_info() const override {
@@ -40,7 +41,7 @@ private:
 
 class AmountProduct: public Product{
 public:
-    AmountProduct(ProductInfo product_info, double cost) noexcept
+    AmountProduct(const ProductInfo& product_info, double cost) noexcept
             :m_cost_per_one(cost), Product(product_info){};
     double get_cost() const noexcept override {return m_cost_per_one;};
     std::string get_info() const override {
