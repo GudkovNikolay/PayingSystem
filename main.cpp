@@ -4,6 +4,8 @@
 #include "Client.h"
 #include "PriceBase.h"
 
+//ссылка на git https://github.com/GudkovNikolay/PayingSystem
+
 int main() {
     PriceBase& price_base = PriceBase::Instance();
 

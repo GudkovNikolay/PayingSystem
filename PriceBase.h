@@ -13,10 +13,10 @@ public:
         static PriceBase instance;
         return instance;
     }
-    WeightProduct& get_product_weight_price(const std::string&  name){
+      const WeightProduct& get_product_weight_price(const std::string&  name) const{
         return m_products_weight_price.at(name);
     }
-    AmountProduct& get_product_amount_price(const std::string&  name){
+      const AmountProduct& get_product_amount_price(const std::string&  name) const{
         return m_products_amount_price.at(name);
     }
 protected:

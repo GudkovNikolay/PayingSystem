@@ -5,7 +5,7 @@
 class Position{
 public:
     Position(Product&& product) = delete;
-    explicit Position(Product& product) noexcept: m_ptr_product(&product){}
+    explicit Position(const Product& product) noexcept: m_ptr_product(&product){}
     const Product* get_ptr_product() const noexcept { return m_ptr_product;}
     virtual double get_cost() const noexcept = 0;
     virtual double get_quantity() const noexcept = 0;
@@ -15,7 +15,8 @@ protected:
 
 class AmountPosition: public Position{
 public:
-    AmountPosition(AmountProduct& product, size_t amount) noexcept:m_amount(amount), Position(product) {};
+    AmountPosition(AmountProduct&& product, size_t amount) = delete;
+    AmountPosition(const AmountProduct& product, size_t amount) noexcept:m_amount(amount), Position(product) {};
     double get_cost() const noexcept override {return m_ptr_product->get_cost() * m_amount;}
     double get_quantity() const noexcept override {return m_amount;};
 private:
@@ -24,7 +25,8 @@ private:
 
 class WeightPosition: public Position{
 public:
-    WeightPosition(WeightProduct& product, double weight) noexcept:m_weight(weight), Position(product) {};
+    WeightPosition(WeightProduct&& product, double weight) = delete;
+    WeightPosition(const WeightProduct& product, double weight) noexcept:m_weight(weight), Position(product) {};
     double get_cost() const noexcept override {return m_ptr_product->get_cost() * m_weight;}
     double get_quantity() const noexcept override {return m_weight;};
 

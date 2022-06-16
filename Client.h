@@ -15,7 +15,7 @@ public:
         return true;
     }
 private:
-    double m_money;
+    double m_money = 0;
 };
 
 class Client{

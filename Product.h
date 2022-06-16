@@ -6,7 +6,7 @@
 
 class ProductInfo{
 public:
-    explicit ProductInfo(const std::string& info)noexcept : m_info(std::move(info)){};
+    explicit ProductInfo(const std::string& info)noexcept : m_info(info){};
     const std::string& get_info() const noexcept {return m_info;}
 private:
     std::string m_info;
@@ -18,14 +18,14 @@ public:
     virtual std::string get_info() const = 0;
     virtual double get_cost() const noexcept = 0;
 protected:
-    ProductInfo m_product_info;
+    const ProductInfo& m_product_info;
 };
 
 class WeightProduct: public Product{
 public:
-    WeightProduct(const WeightProduct& obj):Product(obj.m_product_info), m_cost_per_kg(obj.get_cost()){
+   // WeightProduct(const WeightProduct& obj):Product(obj.m_product_info), m_cost_per_kg(obj.get_cost()){
 
-    }
+   // }
     WeightProduct(const ProductInfo& product_info, double cost) noexcept
             :m_cost_per_kg(cost), Product(product_info){};
     double get_cost() const noexcept override {return m_cost_per_kg;};
